@@ -65,7 +65,11 @@ function trys() {
     var spl = recursion()
     var r = spl[0]
     var c = spl[1]
-    board[r][c] = full
+    if(board[r][c] == empty){
+      board[r][c] = full
+    }else{
+      trys()
+    }
     count++
   } catch (e) {
     trys()
@@ -98,10 +102,13 @@ function draw() {
         var sqr = cnv.rect(innerWidth / 2 - 55 * c, innerHeight / 2 - 55 * r, 50, 50)
           .click(function () {
             if (this.attr("fill") == "#232640") {
-              this.attr({ fill: "#deb446" })
+              this.attr({ fill: "#fa5233" })
               for (var i = 0; i < marr.length; i++) {
-                if(this.id == marr[i][0][0]){
-                  console.log("this should console log")
+                if (this.id == marr[i][0][0]) {
+                  for (var x = 0; x < marr.length; x++) {
+                    cnv.getById(marr[x][0][0]).attr({ fill: "red" })
+                  }
+                  console.log("you lost")
                 }
               }
             } else {
@@ -120,11 +127,10 @@ function draw() {
           `${r}, ${c}`
         ]
       } else {
-
+        
       }
     }
   }
 }
 draw()
 console.log(board)
-console.log(`count should be 5 and is ` + count)
