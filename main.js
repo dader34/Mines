@@ -1,7 +1,4 @@
 //main js file for logic
-var nob = '#232640'
-var bmb = ''
-var norm = ''
 var playing = true
 //Raphael Canvas to draw on
 var canv = document.getElementById("centerdiv")
@@ -16,6 +13,8 @@ var minearr = []
 var marr = []
 //array for empty spaces
 var checked = []
+//array for empty spaces
+var chk = []
 //same thing as empty but full
 var full = 1
 //rows that could fit on my screen
@@ -116,6 +115,7 @@ function cboard() {
 }
 //generate n number of mines on board using random logic
 function draw() {
+  document.getElementById("mply").innerText = "Playing"
   playing = true
   cboard()
   minearr.length = 0
@@ -128,7 +128,7 @@ function draw() {
         var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
           .click(function () {
             if (playing == true) {
-              if (this.attr("fill") == nob) {
+              if (this.attr("fill") =="#232640") {
                 this.attr({ fill: "#fa5233" })
                 for (var i = 0; i < marr.length; i++) {
                   if (this.id == marr[i][0][0]) {
@@ -136,6 +136,7 @@ function draw() {
                       cnv.getById(marr[x][0][0]).attr({ fill: "red" })
                     }
                     playing = false
+                    document.getElementById("mply").innerText = "Play again"
                     // console.log("you lost")
                   }
                 }
@@ -159,6 +160,15 @@ function draw() {
             if (playing == true) {
               if (this.attr("fill") == "#232640") {
                 this.attr({ fill: "#ffeb3b" })
+
+              }
+              if(checked.length >= 19){
+                console.log("you won?")
+              }
+              for (var x = 0; x < chk.length; x++) {
+                if (chk[x][0][0] == this.id) {
+                  checked[checked.length] = [this.id]
+                }
               }
             }
           })
@@ -167,7 +177,7 @@ function draw() {
             stroke: "black",
             "stroke-width": 2.5
           })
-
+        chk[chk.length] = [[sqr.id], `${r}, ${c}`]
       }
     }
   }
