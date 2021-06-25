@@ -3,6 +3,7 @@ var playing = true
 //Raphael Canvas to draw on
 var canv = document.getElementById("centerdiv")
 var cnv = Raphael(centerdiv, centerdiv.width, centerdiv.height)
+var custommines = false
 //var for empty so i dont have to use 0 or 1
 var empty = 0
 //var for number of mines on board(subject to change)
@@ -62,6 +63,7 @@ function recursion() {
     }
   }
 }
+//recursive function to bruteforce random coordinates
 function trys() {
   try {
     var spl = recursion()
@@ -119,6 +121,7 @@ function draw() {
   playing = true
   cboard()
   minearr.length = 0
+  checked.length = 0
   cnv.clear()
   marr.length = 0
   fill()
@@ -128,7 +131,7 @@ function draw() {
         var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
           .click(function () {
             if (playing == true) {
-              if (this.attr("fill") =="#232640") {
+              if (this.attr("fill") == "#232640") {
                 this.attr({ fill: "#fa5233" })
                 for (var i = 0; i < marr.length; i++) {
                   if (this.id == marr[i][0][0]) {
@@ -162,7 +165,7 @@ function draw() {
                 this.attr({ fill: "#ffeb3b" })
 
               }
-              if(checked.length >= 19){
+              if (checked.length >= 25 - mines) {
                 console.log("you won?")
               }
               for (var x = 0; x < chk.length; x++) {
@@ -182,5 +185,44 @@ function draw() {
     }
   }
 }
+document.getElementById("cubtn").onmousedown = function () {
+  this.type = "number"
+  this.placeholder = "1"
+  this.min = "1"
+  this.max = "24"
+  custommines = true
+}
+document.getElementById("obtn").onmousedown = function () {
+  document.getElementById("cubtn").type = "button"
+  document.getElementById("cubtn").value = "Custom"
+  custommines = false
+  mines = 1
+}
+document.getElementById("tbtn").onmousedown = function () {
+  document.getElementById("cubtn").type = "button"
+  document.getElementById("cubtn").value = "Custom"
+  custommines = false
+  mines = 2
+}
+document.getElementById("fbtn").onmousedown = function () {
+  document.getElementById("cubtn").type = "button"
+  document.getElementById("cubtn").value = "Custom"
+  custommines = false
+  mines = 5
+}
+document.getElementById("tebtn").onmousedown = function () {
+  document.getElementById("cubtn").type = "button"
+  document.getElementById("cubtn").value = "Custom"
+  custommines = false
+  mines = 10
+}
 
+function start() {
+  if (custommines == true) {
+    console.log(mines)
+    mines = document.getElementById("cubtn").value
+    console.log(mines)
+  }
+  draw()
+}
 // console.log(board)

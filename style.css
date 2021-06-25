@@ -17,12 +17,12 @@ div.s{
   transform: translate(95%,47%);
 }
 div.l{
-  width: 200px;
+  width: 300px;
   height: 400px;
   border-radius: 5px;
   background: #111325;
   position: absolute;
-  transform: translate(175%,47%)
+  transform: translate(115%,47%)
 }
 button.play{
   background: #ffeb3b;
@@ -34,4 +34,40 @@ button.play{
   z-index: -2;
   cursor: pointer;
   transform: translate(5%,100%);
+}
+button.Cmine{
+  transform: translateX(12%);
+  height: 30px;
+  border: none;
+  padding: 0 15px;
+  width: 50px;
+  text-align: center;
+  border-radius: 4px;
+  background: #2a2b48;
+  color: #d4d5e0;
+  font-size: 14px;
+}
+button.Cmine:hover{
+  background: #323350;
+}
+input.Inmine{
+  transform: translateX(9%);
+  height: 30px;
+  border: none;
+  width: 70px;
+  text-align: center;
+  border-radius: 4px;
+  background: #2a2b48;
+  color: #d4d5e0;
+  font-size: 14px;
+  z-index: 4;
+}
+input.Inmine:hover{
+  background: #323350;
+}
+input.k{
+  width: 50px;
+  height: 30px;
+  border-radius: 3px;
+  z-index: 5;
 }

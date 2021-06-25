@@ -9,7 +9,13 @@
 </head>
 <div id="centerdiv" class = "s"></div>
 <div id = "leftdiv" class = "l">
-  <button onmousedown = "draw()" class = "play" id = "mply">Play Mines</button>
+  <p style = "color: #797b95">Number of mines</p>
+  <button onmousedown="mines = 1" class = "Cmine" id = "obtn">1</button>
+  <button onmousedown="mines = 3" class = "Cmine" id = "tbtn">3</button>
+  <button onmousedown="mines = 5" class = "Cmine" id = "fbtn">5</button>
+  <button onmousedown="mines = 10" class = "Cmine" id = "tebtn">10</button>
+  <input onmousedown=""type="button"value="Custom"class="Inmine"id="cubtn"></input>
+  <button onmousedown = "start()" class = "play" id = "mply">Play Mines</button>
 </div>
 <body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
