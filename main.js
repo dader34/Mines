@@ -109,4 +109,4 @@ for(row = 0;row<board.length;row++){
   }
 }
 console.log(board)
-console.log(`count should be 5 and is ${count}`)
+console.log(`count should be 5 and is ` + count)
