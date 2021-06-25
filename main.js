@@ -1,5 +1,8 @@
 //main js file for logic
-console.log("updated?")
+var nob = '#232640'
+var bmb = ''
+var norm = ''
+var playing = true
 //Raphael Canvas to draw on
 var canv = document.getElementById("canv")
 var cnv = Raphael(canv, innerWidth, innerHeight)
@@ -53,7 +56,7 @@ function recursion() {
         if (typeof ([ro, co]) == "undefined") {
           recursion()
         } else {
-          console.log([ro, co])
+          // console.log([ro, co])
           return ([ro, co])
         }
       }
@@ -90,7 +93,7 @@ function fill() {
       minearr[minearr.length] = [row, col]
     }
 
-    console.log(`${row}, ${col}, ${board[row][col]}`)
+    // console.log(`${row}, ${col}, ${board[row][col]}`)
   }
 }
 //generate n number of mines on board using random logic
@@ -99,16 +102,16 @@ function draw() {
   for (var r = 0; r < board.length; r++) {
     for (var c = 0; c < board[r].length; c++) {
       if (board[r][c] == full) {
-        var sqr = cnv.rect(innerWidth / 2 - 55 * c, innerHeight / 2 - 55 * r, 50, 50)
+        var sqr = cnv.rect(innerWidth / 2 - 87.5 * c, innerHeight / 2 - 87.5 * r, 82.5, 82.5)
           .click(function () {
-            if (this.attr("fill") == "#232640") {
+            if (this.attr("fill") == nob) {
               this.attr({ fill: "#fa5233" })
               for (var i = 0; i < marr.length; i++) {
                 if (this.id == marr[i][0][0]) {
                   for (var x = 0; x < marr.length; x++) {
                     cnv.getById(marr[x][0][0]).attr({ fill: "red" })
                   }
-                  console.log("you lost")
+                  // console.log("you lost")
                 }
               }
             } else {
@@ -127,10 +130,24 @@ function draw() {
           `${r}, ${c}`
         ]
       } else {
-        
+        var sqr = cnv.rect(innerWidth / 2 - 87.5 * c, innerHeight / 2 - 87.5 * r, 82.5, 82.5)
+          .click(function () {
+            if (this.attr("fill") == "#232640") {
+              this.attr({ fill: "#ffeb3b" })
+
+            } else {
+              this.attr({ fill: "#232640" })
+            }
+          })
+          .attr({
+            fill: "#232640",
+            stroke: "black",
+            "stroke-width": 2.5
+          })
+
       }
     }
   }
 }
 draw()
-console.log(board)
+// console.log(board)
