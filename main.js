@@ -4,8 +4,8 @@ var bmb = ''
 var norm = ''
 var playing = true
 //Raphael Canvas to draw on
-var canv = document.getElementById("canv")
-var cnv = Raphael(canv, innerWidth, innerHeight)
+var canv = document.getElementById("centerdiv")
+var cnv = Raphael(centerdiv, centerdiv.width, centerdiv.height)
 //var for empty so i dont have to use 0 or 1
 var empty = 0
 //var for number of mines on board(subject to change)
@@ -68,9 +68,9 @@ function trys() {
     var spl = recursion()
     var r = spl[0]
     var c = spl[1]
-    if(board[r][c] == empty){
+    if (board[r][c] == empty) {
       board[r][c] = full
-    }else{
+    } else {
       trys()
     }
     count++
@@ -96,26 +96,50 @@ function fill() {
     // console.log(`${row}, ${col}, ${board[row][col]}`)
   }
 }
+for (var r = 0; r < board.length; r++) {
+  for (var c = 0; c < board[r].length; c++) {
+    var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
+      .attr({
+        fill: "#232640",
+        stroke: "black",
+        "stroke-width": 2.5
+      })
+  }
+}
+//function cboard to clear board
+function cboard() {
+  for (var r = 0; r < board.length; r++) {
+    for (var c = 0; c < board[r].length; c++) {
+      board[r][c] = 0
+    }
+  }
+}
 //generate n number of mines on board using random logic
-fill()
 function draw() {
+  playing = true
+  cboard()
+  minearr.length = 0
+  cnv.clear()
+  marr.length = 0
+  fill()
   for (var r = 0; r < board.length; r++) {
     for (var c = 0; c < board[r].length; c++) {
       if (board[r][c] == full) {
-        var sqr = cnv.rect(innerWidth / 2 - 87.5 * c, innerHeight / 2 - 87.5 * r, 82.5, 82.5)
+        var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
           .click(function () {
-            if (this.attr("fill") == nob) {
-              this.attr({ fill: "#fa5233" })
-              for (var i = 0; i < marr.length; i++) {
-                if (this.id == marr[i][0][0]) {
-                  for (var x = 0; x < marr.length; x++) {
-                    cnv.getById(marr[x][0][0]).attr({ fill: "red" })
+            if (playing == true) {
+              if (this.attr("fill") == nob) {
+                this.attr({ fill: "#fa5233" })
+                for (var i = 0; i < marr.length; i++) {
+                  if (this.id == marr[i][0][0]) {
+                    for (var x = 0; x < marr.length; x++) {
+                      cnv.getById(marr[x][0][0]).attr({ fill: "red" })
+                    }
+                    playing = false
+                    // console.log("you lost")
                   }
-                  // console.log("you lost")
                 }
               }
-            } else {
-              this.attr({ fill: "#232640" })
             }
           })
           .attr({
@@ -130,13 +154,12 @@ function draw() {
           `${r}, ${c}`
         ]
       } else {
-        var sqr = cnv.rect(innerWidth / 2 - 87.5 * c, innerHeight / 2 - 87.5 * r, 82.5, 82.5)
+        var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
           .click(function () {
-            if (this.attr("fill") == "#232640") {
-              this.attr({ fill: "#ffeb3b" })
-
-            } else {
-              this.attr({ fill: "#232640" })
+            if (playing == true) {
+              if (this.attr("fill") == "#232640") {
+                this.attr({ fill: "#ffeb3b" })
+              }
             }
           })
           .attr({
@@ -149,5 +172,5 @@ function draw() {
     }
   }
 }
-draw()
+
 // console.log(board)
