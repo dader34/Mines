@@ -34,6 +34,7 @@ button.play{
   z-index: -2;
   cursor: pointer;
   transform: translate(5%,100%);
+  font-family: sans-serif;
 }
 button.Cmine{
   transform: translateX(12%);
@@ -46,6 +47,7 @@ button.Cmine{
   background: #2a2b48;
   color: #d4d5e0;
   font-size: 14px;
+  font-family: sans-serif;
 }
 button.Cmine:hover{
   background: #323350;
@@ -61,6 +63,7 @@ input.Inmine{
   color: #d4d5e0;
   font-size: 14px;
   z-index: 4;
+  font-family: sans-serif;
 }
 input.Inmine:hover{
   background: #323350;
@@ -70,4 +73,9 @@ input.k{
   height: 30px;
   border-radius: 3px;
   z-index: 5;
+  font-family: sans-serif;
+}
+p.g{
+  font-family: sans-serif;
+  transform: translate(3%,50%)
 }

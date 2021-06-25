@@ -219,9 +219,7 @@ document.getElementById("tebtn").onmousedown = function () {
 
 function start() {
   if (custommines == true) {
-    console.log(mines)
     mines = document.getElementById("cubtn").value
-    console.log(mines)
   }
   draw()
 }
