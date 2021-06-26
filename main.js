@@ -1,5 +1,6 @@
 //main js file for logic
 var playing = true
+var status = "Start game"
 //Raphael Canvas to draw on
 var canv = document.getElementById("centerdiv")
 var cnv = Raphael(centerdiv, centerdiv.width, centerdiv.height)
@@ -117,6 +118,9 @@ function cboard() {
 }
 //generate n number of mines on board using random logic
 function draw() {
+  status = "Game in progress"
+  document.getElementById("status").innerText = "Status: " + status
+  document.getElementById("status").setAttribute("style", "background:#a2b4c4dc;")
   document.getElementById("mply").innerText = "Playing"
   playing = true
   cboard()
@@ -140,6 +144,9 @@ function draw() {
                     }
                     playing = false
                     document.getElementById("mply").innerText = "Play again"
+                    status = "You lost"
+                    document.getElementById("status").innerText = "Status: " + status
+                    document.getElementById("status").setAttribute("style", "background:#fa5233;")
                     // console.log("you lost")
                   }
                 }
@@ -148,6 +155,7 @@ function draw() {
           })
           .attr({
             fill: "#232640",
+            // fill: "red",
             stroke: "black",
             "stroke-width": 2.5
           })
@@ -166,12 +174,27 @@ function draw() {
                 this.attr({ fill: "#ffeb3b" })
 
               }
-              if (checked.length >= 25 - mines) {
-                console.log("you won?")
+              if (checked.length == 24 - mines) {
+                status = "You won!"
+                document.getElementById("status").innerText = "Status: " + status
+                document.getElementById("status").setAttribute("style", "background:#ffeb3b;")
+                document.getElementById("mply").innerText = "Play again"
+                playing = false
+                for (var i = 0; i < marr.length; i++) {
+                  for (var x = 0; x < marr.length; x++) {
+                    cnv.getById(marr[x][0][0]).attr({ fill: "#cf5353" })
+                  }
+                }
               }
               for (var x = 0; x < chk.length; x++) {
                 if (chk[x][0][0] == this.id) {
-                  checked[checked.length] = [this.id]
+                  for (var i = 0; i < checked.length + 1; i++) {
+                    if (checked.includes(this.id)) {
+                      // console.log("already clicked!")
+                    } else {
+                      checked[checked.length] = this.id
+                    }
+                  }
                 }
               }
             }
@@ -188,6 +211,7 @@ function draw() {
   }
 }
 document.getElementById("fbtn").setAttribute("style", "background:#4b4c65;")
+document.getElementById("status").innerText = "Status: " + status
 document.getElementById("cubtn").onmousedown = function () {
   document.getElementById("obtn").setAttribute("style", "background:#2a2b48;")
   document.getElementById("tbtn").setAttribute("style", "background:#2a2b48;")
