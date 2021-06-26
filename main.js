@@ -245,7 +245,7 @@ document.getElementById("tbtn").onmousedown = function () {
   document.getElementById("cubtn").type = "button"
   document.getElementById("cubtn").value = "Custom"
   custommines = false
-  mines = 2
+  mines = 3
 }
 document.getElementById("fbtn").onmousedown = function () {
   document.getElementById("tbtn").setAttribute("style", "background:#2a2b48;")
