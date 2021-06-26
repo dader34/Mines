@@ -158,6 +158,7 @@ function draw() {
           `${r}, ${c}`
         ]
       } else {
+
         var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
           .click(function () {
             if (playing == true) {
@@ -180,12 +181,19 @@ function draw() {
             stroke: "black",
             "stroke-width": 2.5
           })
+
         chk[chk.length] = [[sqr.id], `${r}, ${c}`]
       }
     }
   }
 }
+document.getElementById("fbtn").setAttribute("style", "background:#4b4c65;")
 document.getElementById("cubtn").onmousedown = function () {
+  document.getElementById("obtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("tbtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("fbtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("tebtn").setAttribute("style", "background:#2a2b48;")
+
   this.type = "number"
   this.placeholder = "1"
   this.min = "1"
@@ -193,24 +201,45 @@ document.getElementById("cubtn").onmousedown = function () {
   custommines = true
 }
 document.getElementById("obtn").onmousedown = function () {
+  document.getElementById("cubtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("tbtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("fbtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("tebtn").setAttribute("style", "background:#2a2b48;")
+  this.setAttribute("style", "background:#4b4c65;")
   document.getElementById("cubtn").type = "button"
   document.getElementById("cubtn").value = "Custom"
   custommines = false
   mines = 1
+
 }
 document.getElementById("tbtn").onmousedown = function () {
+  document.getElementById("obtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("cubtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("fbtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("tebtn").setAttribute("style", "background:#2a2b48;")
+  this.setAttribute("style", "background:#4b4c65;")
   document.getElementById("cubtn").type = "button"
   document.getElementById("cubtn").value = "Custom"
   custommines = false
   mines = 2
 }
 document.getElementById("fbtn").onmousedown = function () {
+  document.getElementById("tbtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("obtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("cubtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("tebtn").setAttribute("style", "background:#2a2b48;")
+  this.setAttribute("style", "background:#4b4c65;")
   document.getElementById("cubtn").type = "button"
   document.getElementById("cubtn").value = "Custom"
   custommines = false
   mines = 5
 }
 document.getElementById("tebtn").onmousedown = function () {
+  document.getElementById("tbtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("obtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("cubtn").setAttribute("style", "background:#2a2b48;")
+  document.getElementById("fbtn").setAttribute("style", "background:#2a2b48;")
+  this.setAttribute("style", "background:#4b4c65;")
   document.getElementById("cubtn").type = "button"
   document.getElementById("cubtn").value = "Custom"
   custommines = false
