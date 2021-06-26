@@ -14,7 +14,7 @@ div.s{
   background: #1a1c32;
   position: absolute;
   align-content: center;
-  transform: translate(95%,47%);
+  transform: translate(145%,47%);
 }
 div.l{
   width: 300px;
@@ -22,7 +22,7 @@ div.l{
   border-radius: 5px;
   background: #111325;
   position: absolute;
-  transform: translate(115%,47%)
+  transform: translate(185%,47%)
 }
 button.play{
   background: #ffeb3b;
@@ -94,4 +94,23 @@ button.selected{
   font-size: 14px;
   font-family: sans-serif;
   cursor: pointer;
+}
+div.top{
+  height: 30px;
+  background: #232546;
+  width: 100%;
+  bottom: 100%;
+  text-align: right;
+}
+a.l{
+  font-family: sans-serif;
+  color: #bcbdc7;
+  text-decoration: none;
+  position: absolute;
+  right: 70px;
+}
+div.git{
+  height: 70px;
+  background: #2f3258;
+  width: 100%;
 }
