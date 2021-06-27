@@ -185,6 +185,7 @@ function draw() {
 
               }
               if (checked.length == 24 - mines) {
+                pagain = true
                 status = "You won!"
                 document.getElementById("status").innerText = "Status: " + status
                 document.getElementById("status").setAttribute("style", "background:#ffeb3b;")
