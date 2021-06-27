@@ -5,6 +5,7 @@ var status = "Start game"
 var canv = document.getElementById("centerdiv")
 var cnv = Raphael(centerdiv, centerdiv.width, centerdiv.height)
 var custommines = false
+var pagain = true
 //var for empty so i dont have to use 0 or 1
 var empty = 0
 //var for number of mines on board(subject to change)
@@ -129,6 +130,14 @@ function draw() {
   cnv.clear()
   marr.length = 0
   fill()
+  var b2 = solve(board)
+  rotate(b2)
+  rotate(b2)
+  rotate(b2)
+  for(var r = 0;r<b2.length;r++){
+    b2[r] = b2[r].reverse()
+  }
+  console.log(b2)
   for (var r = 0; r < board.length; r++) {
     for (var c = 0; c < board[r].length; c++) {
       if (board[r][c] == full) {
@@ -147,6 +156,7 @@ function draw() {
                     status = "You lost"
                     document.getElementById("status").innerText = "Status: " + status
                     document.getElementById("status").setAttribute("style", "background:#fa5233;")
+                    pagain = true
                     // console.log("you lost")
                   }
                 }
@@ -274,6 +284,50 @@ function start() {
   if (custommines == true) {
     mines = document.getElementById("cubtn").value
   }
-  draw()
+  if(pagain == true){
+    draw()
+    pagain = false
+  }
 }
+function solve(matrix) {
+  let arr = [];
+  for (let i = 0; i < matrix.length; i++) {
+    arr.push([])
+    for (let j = 0; j < matrix.length; j++) {
+      arr[i].push(matrix[j][i])
+    }
+  }
+  return arr
+}
+function rotate(matrix) {
+  if (!matrix.length) return null;
+  if (matrix.length === 1) return matrix;
+  transpose(matrix);
+  matrix.forEach((row) => {
+    reverse(row, 0, row.length - 1);
+  });
+}
+
+function transpose(matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = i; j < matrix[0].length; j++) {
+      const temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = temp;
+    }
+  }
+  return matrix;
+}
+
+function reverse(row, start, end) {
+  while (start < end) {
+    const temp = row[start];
+    row[start] = row[end];
+    row[end] = temp;
+    start++;
+    end--;
+  }
+  return row;
+}
+
 // console.log(board)
