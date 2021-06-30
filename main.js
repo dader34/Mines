@@ -1,11 +1,12 @@
 var resp = ""
 const cfetch = () => {
   fetch('https://test.danner.repl.co/message/')
-  .then(response => response.json())
-  .then(data => document.getElementById("post").innerHTML = data);
+    .then(response => response.json())
+    .then(data => document.getElementById("post").innerHTML = data);
 }
 cfetch()
-setInterval(cfetch,2000)
+
+setInterval(cfetch, 2000)
 //main js file for logic
 var playing = true
 var status = "Start game"
@@ -128,11 +129,22 @@ function cboard() {
 }
 //generate n number of mines on board using random logic
 function draw() {
+  var x = new Date()
+  var day = x.getDate()
+  var month = x.getMonth()
+  var year = x.getFullYear()
+  var url = `https://test.danner.repl.co/message/Last%20game%20played%20on,%20${month},${day},${year}`;
+  // Post to the provided URL with the specified parameters.
+fetch(url, {
+    method: 'post',
+  }).then(function(response) {
+    return response.json();
+  })
   status = "Game in progress"
   document.getElementById("status").innerText = "Status: " + status
   document.getElementById("status").setAttribute("style", "background:#a2b4c4dc;")
   document.getElementById("mply").innerText = "Playing"
-  document.getElementById("mply").setAttribute("style","cursor:default;")
+  document.getElementById("mply").setAttribute("style", "cursor:default;")
   playing = true
   cboard()
   minearr.length = 0
@@ -144,10 +156,10 @@ function draw() {
   rotate(b2)
   rotate(b2)
   rotate(b2)
-  for(var r = 0;r<b2.length;r++){
+  for (var r = 0; r < b2.length; r++) {
     b2[r] = b2[r].reverse()
   }
-  console.log(b2)
+  if(hack == true){console.log(b2)}
   for (var r = 0; r < board.length; r++) {
     for (var c = 0; c < board[r].length; c++) {
       if (board[r][c] == full) {
@@ -167,28 +179,28 @@ function draw() {
                     document.getElementById("status").innerText = "Status: " + status
                     document.getElementById("status").setAttribute("style", "background:#fa5233;")
                     pagain = true
-                    document.getElementById("mply").setAttribute("style","cursor:pointer;")
+                    document.getElementById("mply").setAttribute("style", "cursor:pointer;")
                     // console.log("you lost")
                   }
                 }
               }
             }
           })
-          if(hack == true){
-            sqr.attr({
+        if (hack == true) {
+          sqr.attr({
             fill: "#cf5353",
             // fill: "red",
             stroke: "black",
             "stroke-width": 2.5
           })
-          }else{
+        } else {
           sqr.attr({
             fill: "#232640",
             // fill: "red",
             stroke: "black",
             "stroke-width": 2.5
           })
-          }
+        }
 
         marr[marr.length] = [
           [
@@ -208,7 +220,7 @@ function draw() {
               if (checked.length == 24 - mines) {
                 pagain = true
                 status = "You won!"
-                document.getElementById("mply").setAttribute("style","cursor:pointer;")
+                document.getElementById("mply").setAttribute("style", "cursor:pointer;")
                 document.getElementById("status").innerText = "Status: " + status
                 document.getElementById("status").setAttribute("style", "background:#ffeb3b;")
                 document.getElementById("mply").innerText = "Play again"
@@ -307,7 +319,7 @@ function start() {
   if (custommines == true) {
     mines = document.getElementById("cubtn").value
   }
-  if(pagain == true){
+  if (pagain == true) {
     draw()
     pagain = false
   }
@@ -352,8 +364,8 @@ function reverse(row, start, end) {
   }
   return row;
 }
-onkeypress = function(key){
-  if(key.keyCode == 32 || 13 && pagain == true){
+onkeypress = function (key) {
+  if (key.keyCode == 32 || 13 && pagain == true) {
     start()
   }
 }
