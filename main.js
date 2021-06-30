@@ -6,7 +6,7 @@ const cfetch = () => {
 }
 cfetch()
 
-setInterval(cfetch, 2000)
+setInterval(cfetch, 10000)
 //main js file for logic
 var playing = true
 var status = "Start game"
