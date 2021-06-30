@@ -1,6 +1,15 @@
+var resp = ""
+const cfetch = () => {
+  fetch('https://test.danner.repl.co/message/')
+  .then(response => response.json())
+  .then(data => document.getElementById("post").innerHTML = data);
+}
+cfetch()
+setInterval(cfetch,2000)
 //main js file for logic
 var playing = true
 var status = "Start game"
+var hack = false
 //Raphael Canvas to draw on
 var canv = document.getElementById("centerdiv")
 var cnv = Raphael(centerdiv, centerdiv.width, centerdiv.height)
@@ -123,6 +132,7 @@ function draw() {
   document.getElementById("status").innerText = "Status: " + status
   document.getElementById("status").setAttribute("style", "background:#a2b4c4dc;")
   document.getElementById("mply").innerText = "Playing"
+  document.getElementById("mply").setAttribute("style","cursor:default;")
   playing = true
   cboard()
   minearr.length = 0
@@ -144,7 +154,7 @@ function draw() {
         var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
           .click(function () {
             if (playing == true) {
-              if (this.attr("fill") == "#232640") {
+              if (this.attr("fill") == "#232640" || "#cf5353") {
                 this.attr({ fill: "#fa5233" })
                 for (var i = 0; i < marr.length; i++) {
                   if (this.id == marr[i][0][0]) {
@@ -157,18 +167,29 @@ function draw() {
                     document.getElementById("status").innerText = "Status: " + status
                     document.getElementById("status").setAttribute("style", "background:#fa5233;")
                     pagain = true
+                    document.getElementById("mply").setAttribute("style","cursor:pointer;")
                     // console.log("you lost")
                   }
                 }
               }
             }
           })
-          .attr({
+          if(hack == true){
+            sqr.attr({
+            fill: "#cf5353",
+            // fill: "red",
+            stroke: "black",
+            "stroke-width": 2.5
+          })
+          }else{
+          sqr.attr({
             fill: "#232640",
             // fill: "red",
             stroke: "black",
             "stroke-width": 2.5
           })
+          }
+
         marr[marr.length] = [
           [
             sqr.id
@@ -187,6 +208,7 @@ function draw() {
               if (checked.length == 24 - mines) {
                 pagain = true
                 status = "You won!"
+                document.getElementById("mply").setAttribute("style","cursor:pointer;")
                 document.getElementById("status").innerText = "Status: " + status
                 document.getElementById("status").setAttribute("style", "background:#ffeb3b;")
                 document.getElementById("mply").innerText = "Play again"
@@ -330,5 +352,9 @@ function reverse(row, start, end) {
   }
   return row;
 }
-
+onkeypress = function(key){
+  if(key.keyCode == 32 || 13 && pagain == true){
+    start()
+  }
+}
 // console.log(board)
