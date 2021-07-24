@@ -5,7 +5,27 @@ const cfetch = () => {
     .then(data => document.getElementById("post").innerHTML = data);
 }
 cfetch()
-
+var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+let colmtp = 55
+let rowmtp = 55
+let size = 50
+let cnv
+if(isIOS){
+  $("div.s").attr("class","smobile")
+  $("div.l").attr("class","lmobile")
+  $("div.top").attr("class","topmobile")
+  $("div.git").attr("class","gitmobile")
+  $("p.post").attr("class","postmobile")
+  colmtp = 40
+  rowmtp = 40
+  size = 35
+  cnv = Raphael(centerdiv, 0, 0, 450, 300)
+  $("svg").removeAttr("width")
+  $("svg").attr("width","400")
+}
+else{
+  cnv = Raphael(centerdiv, 0, 0, centerdiv.width, centerdiv.height)
+}
 setInterval(cfetch, 10000)
 //main js file for logic
 var playing = true
@@ -13,7 +33,7 @@ var status = "Start game"
 var hack = false
 //Raphael Canvas to draw on
 var canv = document.getElementById("centerdiv")
-var cnv = Raphael(centerdiv, centerdiv.width, centerdiv.height)
+
 var custommines = false
 var pagain = true
 //var for empty so i dont have to use 0 or 1
@@ -111,7 +131,7 @@ function fill() {
 }
 for (var r = 0; r < board.length; r++) {
   for (var c = 0; c < board[r].length; c++) {
-    var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
+    var sqr = cnv.rect(350 - colmtp * c, 275 - rowmtp * r, size, size)
       .attr({
         fill: "#232640",
         stroke: "black",
@@ -163,7 +183,7 @@ fetch(url, {
   for (var r = 0; r < board.length; r++) {
     for (var c = 0; c < board[r].length; c++) {
       if (board[r][c] == full) {
-        var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
+        var sqr = cnv.rect(350 - colmtp * c, 275 - rowmtp * r, size, size)
           .click(function () {
             if (playing == true) {
               if (this.attr("fill") == "#232640" || "#cf5353") {
@@ -210,7 +230,7 @@ fetch(url, {
         ]
       } else {
 
-        var sqr = cnv.rect(400 - 55 * c, 275 - 55 * r, 50, 50)
+        var sqr = cnv.rect(350 - colmtp * c, 275 - rowmtp * r, size, size)
           .click(function () {
             if (playing == true) {
               if (this.attr("fill") == "#232640") {

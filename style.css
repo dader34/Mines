@@ -10,7 +10,17 @@ div.s{
   background: #1a1c32;
   position: absolute;
   align-content: center;
-  transform: translate(145%,47%);
+  transform: translate(140%,47%);
+}
+div.smobile{
+  width: 400px;
+  height: 400px;
+  border-radius: 5px;
+  color: white;
+  background: #1a1c32;
+  position: absolute;
+  align-content: center;
+  transform: translate(0%,47%);
 }
 div.l{
   width: 300px;
@@ -19,6 +29,14 @@ div.l{
   background: #111325;
   position: absolute;
   transform: translate(185%,47%)
+}
+div.lmobile{
+  width: 150px;
+  height: 400px;
+  border-radius: 5px;
+  background: #111325;
+  position: absolute;
+  transform: translate(0%,47%)
 }
 button.play{
   background: #ffeb3b;
@@ -99,7 +117,22 @@ div.top{
   bottom: 100%;
   text-align: right;
 }
+div.topmobile{
+  height: 30px;
+  background: #232546;
+  width: 400px;
+  bottom: 100%;
+  text-align: right;
+}
 a.l{
+  font-family: sans-serif;
+  color: #bcbdc7;
+  text-decoration: none;
+  position: absolute;
+  right: 70px;
+  top: 5px;
+}
+a.lmobile{
   font-family: sans-serif;
   color: #bcbdc7;
   text-decoration: none;
@@ -111,6 +144,11 @@ div.git{
   height: 70px;
   background: #2f3258;
   width: 100%;
+}
+div.gitmobile{
+  height: 70px;
+  background: #2f3258;
+  width: 400px;
 }
 button.play2{
   background: #a2b4c4dc;
@@ -125,6 +163,14 @@ button.play2{
   text-align: center;
   align-content: center;
   border: none;
+}
+p.postmobile{
+  font-family: sans-serif;
+  color: #bcbdc7;
+  text-decoration: none;
+  position: absolute;
+  left: 30%;
+  top: 5%;
 }
 p.post{
   font-family: sans-serif;
