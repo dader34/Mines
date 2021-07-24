@@ -16,6 +16,7 @@ if(isIOS){
   $("div.top").attr("class","topmobile")
   $("div.git").attr("class","gitmobile")
   $("p.post").attr("class","postmobile")
+  $("a.l").attr("class","lmobile")
   colmtp = 40
   rowmtp = 40
   size = 35

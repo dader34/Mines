@@ -1,6 +1,8 @@
 body{
   margin: 0%;
   background: #2a2d4d;
+  overflow: hidden;
+  position: fixed;
 }
 div.s{
   width: 550px;
@@ -20,7 +22,7 @@ div.smobile{
   background: #1a1c32;
   position: absolute;
   align-content: center;
-  transform: translate(0%,47%);
+  transform: translate(0%,25%);
 }
 div.l{
   width: 300px;
@@ -36,7 +38,7 @@ div.lmobile{
   border-radius: 5px;
   background: #111325;
   position: absolute;
-  transform: translate(0%,47%)
+  transform: translate(0%,25%)
 }
 button.play{
   background: #ffeb3b;
@@ -137,7 +139,7 @@ a.lmobile{
   color: #bcbdc7;
   text-decoration: none;
   position: absolute;
-  right: 70px;
+  left: 23%;
   top: 5px;
 }
 div.git{
@@ -169,8 +171,8 @@ p.postmobile{
   color: #bcbdc7;
   text-decoration: none;
   position: absolute;
-  left: 30%;
-  top: 5%;
+  left: 20%;
+  top: 20%;
 }
 p.post{
   font-family: sans-serif;
